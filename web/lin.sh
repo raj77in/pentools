@@ -20,19 +20,22 @@
 set -o nounset                              # Treat unset variables as an error
 
 ## Copy the enumeration scripts
+cd $PT_TEMP
 mkdir -p www/lin
 cd www/lin
 
-cp $GDIR/Linux/linux-smart-enumeration/lse.sh .
-cp $GDIR/Linux/LinEnum/LineEnum.sh .
-cp $GDIR/PrivEsc/privilege-escalation-awesome-scripts-suite/linPEAS/linpeas.sh .
+cp $PT_GDIR/Linux/linux-smart-enumeration/lse.sh .
+cp $PT_GDIR/Linux/LinEnum/LineEnum.sh .
+cp $PT_GDIR/PrivEsc/privilege-escalation-awesome-scripts-suite/linPEAS/linpeas.sh .
 
 ## Get pspy
-cp $TDIR/pspy-v1.2.0/pspy32 .
-cp $TDIR/pspy-v1.2.0/pspy64 .
-cp $TDIR/pspy-v1.2.0/pspy32s .
-cp $TDIR/pspy-v1.2.0/pspy64s .
+cp $PT_TDIR/pspy-v1.2.0/pspy32 .
+cp $PT_TDIR/pspy-v1.2.0/pspy64 .
+cp $PT_TDIR/pspy-v1.2.0/pspy32s .
+cp $PT_TDIR/pspy-v1.2.0/pspy64s .
 
-cd ..
+cd $PT_TEMP
+echo "Files available on webserver"
+find . -type f
 echo "Local IP is :: $LIP"
 python3 -m http.server 80

