@@ -1,0 +1,16 @@
+{
+  "ImageId": "ami-08aa543413d7bdc57",
+  "UserData":"file://ignored/user_data-box.ps1",
+  "KeyName": "aka",
+  "SecurityGroupIds": [ "sg-047fcbab42580b283" ],
+  "InstanceType": "t3.micro",
+
+  "NetworkInterfaces": [
+    {
+      "DeviceIndex": 0,
+      "SubnetId": "subnet-854a1eda",
+      "Groups": [ "sg-047fcbab42580b283" ],
+      "AssociatePublicIpAddress": true
+    }
+  ]
+}
