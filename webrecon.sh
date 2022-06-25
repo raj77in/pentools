@@ -73,33 +73,15 @@ for line in $(cat $url/recon/wayback/params/wayback_params.txt);do echo $line'='
 header Scraping "Pulling and compiling js/php/aspx/jsp/json files"
 for line in $(cat $url/recon/wayback/wayback_output.txt);do
     ext="${line##*.}"
-    if [[ "$ext" == "js" ]]; then
-        echo $line >> $url/recon/wayback/extensions/js1.txt
-        sort -u $url/recon/wayback/extensions/js1.txt >> $url/recon/wayback/extensions/js.txt
-    fi
-    if [[ "$ext" == "html" ]];then
-        echo $line >> $url/recon/wayback/extensions/jsp1.txt
-        sort -u $url/recon/wayback/extensions/jsp1.txt >> $url/recon/wayback/extensions/jsp.txt
-    fi
-    if [[ "$ext" == "json" ]];then
-        echo $line >> $url/recon/wayback/extensions/json1.txt
-        sort -u $url/recon/wayback/extensions/json1.txt >> $url/recon/wayback/extensions/json.txt
-    fi
-    if [[ "$ext" == "php" ]];then
-        echo $line >> $url/recon/wayback/extensions/php1.txt
-        sort -u $url/recon/wayback/extensions/php1.txt >> $url/recon/wayback/extensions/php.txt
-    fi
-    if [[ "$ext" == "aspx" ]];then
-        echo $line >> $url/recon/wayback/extensions/aspx1.txt
-        sort -u $url/recon/wayback/extensions/aspx1.txt >> $url/recon/wayback/extensions/aspx.txt
-    fi
+    echo $line >> $url/recon/wayback/extensions/$ext.txt
+done
+
+for f in $url/recon/wayback/extensions/*
+do
+    sort -u $url/recon/wayback/extensions/$ext.txt >$url/recon/wayback/extensions/temp.txt
+    mv $url/recon/wayback/extensions/temp.txt $url/recon/wayback/extensions/$ext.txt
 done
  
-rm $url/recon/wayback/extensions/js1.txt
-rm $url/recon/wayback/extensions/jsp1.txt
-rm $url/recon/wayback/extensions/json1.txt
-rm $url/recon/wayback/extensions/php1.txt
-rm $url/recon/wayback/extensions/aspx1.txt
 #echo "[+] Running eyewitness against all compiled domains..."
 #python3 EyeWitness/EyeWitness.py --web -f $url/recon/httprobe/alive.txt -d $url/recon/eyewitness --resolve
 
