@@ -18,23 +18,25 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
+set -x
 
 ## Copy the enumeration scripts
-cd $PT_TEMP
+#cd $PT_TEMP
 mkdir -p www/lin
 cd www/lin
 
-cp $PT_GDIR/Linux/linux-smart-enumeration/lse.sh .
-cp $PT_GDIR/Linux/LinEnum/LineEnum.sh .
-cp $PT_GDIR/PrivEsc/privilege-escalation-awesome-scripts-suite/linPEAS/linpeas.sh .
+wget "https://github.com/diego-treitos/linux-smart-enumeration/releases/latest/download/lse.sh"
+wget "https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh"
+wget "https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh"
+wget "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -O les.sh"
 
-## Get pspy
-cp $PT_TDIR/pspy-v1.2.0/pspy32 .
-cp $PT_TDIR/pspy-v1.2.0/pspy64 .
-cp $PT_TDIR/pspy-v1.2.0/pspy32s .
-cp $PT_TDIR/pspy-v1.2.0/pspy64s .
+wget "https://github.com/DominicBreuker/pspy/releases/latest/download/pspy32"
+wget "https://github.com/DominicBreuker/pspy/releases/latest/download/pspy32s"
+wget "https://github.com/DominicBreuker/pspy/releases/latest/download/pspy64"
+wget "https://github.com/DominicBreuker/pspy/releases/latest/download/pspy64s"
 
-cd $PT_TEMP
+
+
 echo "Files available on webserver"
 find . -type f
 echo "Local IP is :: $LIP"

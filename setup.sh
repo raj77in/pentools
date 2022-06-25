@@ -1,4 +1,4 @@
-#!/bin/bash - 
+#!/bin/bash -
 #===============================================================================
 #
 #          FILE: setup.sh
@@ -21,8 +21,8 @@
 [[ -z $HOSTNAME ]] && echo "HOSTNAME is not set", exit 3
 export BASE="$HOME/tools"
 export PT_ODIR="${PT_ODIR:-~/scans/$HOSTNAME/}"
-mkdir -p $PT_ODIR
-cd $PT_ODIR
+# mkdir -p $PT_ODIR
+# cd $PT_ODIR
 
 export PT_TUN=${PT_TUN:-tun0}
 export PT_GDIR=${PT_GDIR:-~/tools/git}
@@ -41,10 +41,10 @@ export nmap="/usr/bin/nmap"
 function help() {
     echo "Not enough arguments."
     echo "Run with <folder> <script>"
-    dirs=$(find -type f|sed 's/^..//'|grep '\/'|awk -F'/' '{print $1}'|sort |uniq)
+    dirs=$(find $BASE/ -type f| grep -v "$BASE/.git" |sed 's;'"$BASE"'/;;'|grep '\/'|awk -F'/' '{print $1}'|sort |uniq)
     echo "Folders : $(echo ${dirs}|tr '\n' ' ')"
     echo "All modules :: $(for i in $dirs; do \
-          find $i -type f -name \*sh ; done | tr '\n' ' ') "
+        find $BASE/$i -type f -name \*sh -exec basename {} \;|sed -e 's/.sh$//' -e 's/^/'$i'\//'; done | tr '\n' ' ') "
 
     exit 2
 }
