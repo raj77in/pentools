@@ -18,7 +18,6 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
-set -x
 
 ## Copy the enumeration scripts
 #cd $PT_TEMP
