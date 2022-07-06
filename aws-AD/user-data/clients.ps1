@@ -44,7 +44,7 @@ switch ($bootcount) {
     1 {
         # Fill in anything needed on first run
 # Create new user
-  $Secure_String_Pwd = ConvertTo-SecureString "password" -AsPlainText -Force
+  $Secure_String_Pwd = ConvertTo-SecureString 'P123$assword' -AsPlainText -Force
     New-LocalUser -AccountNeverExpires -Description "Amit Agarwal" -FullName "Amit Agarwal" -Name amitag -PasswordNeverExpires  -Password $Secure_String_Pwd
     Add-LocalGroupMember -Group "Administrators" -Member "amitag"
 
