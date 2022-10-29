@@ -19,14 +19,14 @@
 
 [[ -z $PT_IP ]] && echo "PT_IP is not set", exit 3
 [[ -z $HOSTNAME ]] && echo "HOSTNAME is not set", exit 3
-export BASE="$HOME/tools"
+export BASE="$HOME/pentools"
 export PT_ODIR="${PT_ODIR:-~/scans/$HOSTNAME/}"
 # mkdir -p $PT_ODIR
 # cd $PT_ODIR
 
 export PT_TUN=${PT_TUN:-tun0}
-export PT_GDIR=${PT_GDIR:-~/tools/git}
-export PT_TDIR=${PT_TDIR:-/tools/downloaded_tools}
+export PT_GDIR=${PT_GDIR:-~/pentools/git}
+export PT_TDIR=${PT_TDIR:-/pentools/downloaded_tools}
 export PT_IP=${PT_IP:-10.10.10.10}
 export PT_LPORT=${PT_LPORT:-8001}
 export LIP=$(ip -o -4 --brief a \
