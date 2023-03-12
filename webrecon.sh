@@ -59,29 +59,29 @@ echo "[+] Checking for possible subdomain takeover..."
 header subjack "Possible Domain TakeOver" 
 subjack -w $url/recon/final.txt -t 100 -timeout 30 -ssl -c ~/go/src/github.com/haccer/subjack/fingerprints.json -v 3 -o $url/recon/potential_takeovers/potential_takeovers.txt
  
-header nmap "Port Scan"
-nmap -iL $url/recon/httprobe/alive.txt -T4 -oA $url/recon/scans/scanned.txt
+# header nmap "Port Scan"
+# nmap -iL $url/recon/httprobe/alive.txt -T4 -oA $url/recon/scans/scanned.txt
  
-header waybackurls "Wayback data"
-cat $url/recon/final.txt | waybackurls >> $url/recon/wayback/wayback_output.txt
-sort -u $url/recon/wayback/wayback_output.txt
+# header waybackurls "Wayback data"
+# cat $url/recon/final.txt | waybackurls >> $url/recon/wayback/wayback_output.txt
+# sort -u $url/recon/wayback/wayback_output.txt
  
-header params "Scraping params"
-cat $url/recon/wayback/wayback_output.txt | grep '?*=' | cut -d '=' -f 1 | sort -u >> $url/recon/wayback/params/wayback_params.txt
-for line in $(cat $url/recon/wayback/params/wayback_params.txt);do echo $line'=';done
- 
-header Scraping "Pulling and compiling js/php/aspx/jsp/json files"
-for line in $(cat $url/recon/wayback/wayback_output.txt);do
-    ext="${line##*.}"
-    echo $line >> $url/recon/wayback/extensions/$ext.txt
-done
-
-for f in $url/recon/wayback/extensions/*
-do
-    sort -u $url/recon/wayback/extensions/$ext.txt >$url/recon/wayback/extensions/temp.txt
-    mv $url/recon/wayback/extensions/temp.txt $url/recon/wayback/extensions/$ext.txt
-done
- 
+# header params "Scraping params"
+# cat $url/recon/wayback/wayback_output.txt | grep '?*=' | cut -d '=' -f 1 | sort -u >> $url/recon/wayback/params/wayback_params.txt
+# for line in $(cat $url/recon/wayback/params/wayback_params.txt);do echo $line'=';done
+#
+# header Scraping "Pulling and compiling js/php/aspx/jsp/json files"
+# for line in $(cat $url/recon/wayback/wayback_output.txt);do
+    # ext="${line##*.}"
+    # echo $line >> $url/recon/wayback/extensions/$ext.txt
+# done
+#
+# for f in $url/recon/wayback/extensions/*
+# do
+    # sort -u $url/recon/wayback/extensions/$ext.txt >$url/recon/wayback/extensions/temp.txt
+    # mv $url/recon/wayback/extensions/temp.txt $url/recon/wayback/extensions/$ext.txt
+# done
+#
 #echo "[+] Running eyewitness against all compiled domains..."
 #python3 EyeWitness/EyeWitness.py --web -f $url/recon/httprobe/alive.txt -d $url/recon/eyewitness --resolve
 
