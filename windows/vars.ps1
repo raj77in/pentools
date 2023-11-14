@@ -1,0 +1,8 @@
+$LoaderBin="Local"
+$Domain="us.techcorp.local"
+$Target="Administrator"
+$Type="rc4"
+$Domain = "us.techcorp.local"
+$DomainController = "us-dc"
+$IP = "192.168.100.32"
+$CurrentUser = "studentuser32"
